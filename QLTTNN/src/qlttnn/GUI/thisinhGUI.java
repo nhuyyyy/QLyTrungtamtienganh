@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package qlttnn.GUI;
-
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +31,8 @@ public class thisinhGUI extends javax.swing.JPanel {
      */
     public thisinhGUI() {
         initComponents();
-        txtMaThiSinh.setEnabled(false);
+        doDuLieuLenBang();
+       txtMaThiSinh.setEnabled(false);
     }
 
     /**
@@ -184,15 +185,7 @@ public class thisinhGUI extends javax.swing.JPanel {
             new String [] {
                 "Mã thí sinh", "Cmnd", "Email", "Họ tên", "Ngày sinh", "Nơi sinh", "Sdt"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtMouseClicked(evt);
@@ -378,10 +371,11 @@ public class thisinhGUI extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             thisinhBLL bus = new thisinhBLL();
-            txtMaThiSinh.setText(bus.remindThisinhID());
-            bus.docDuLieu();
+           txtMaThiSinh.setText(bus.remindMathisinh());
+       
             qlttnn.DTO.thisinhDTO thisinh = new qlttnn.DTO.thisinhDTO();
             thisinh.setTsID(Integer.parseInt(txtMaThiSinh.getText()));
+            
             thisinh.setCmnd(txtCMND.getText());
             thisinh.setEmail(txtEmail.getText());
             thisinh.setHoten(txtTenThiSinh.getText());
@@ -407,7 +401,7 @@ public class thisinhGUI extends javax.swing.JPanel {
             }
             cleanView();
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(thisinhDTO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             Logger.getLogger(thisinhDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -534,7 +528,7 @@ public class thisinhGUI extends javax.swing.JPanel {
         try {
             jdcDOB.setDate(format.parse(toString3));
         } catch (ParseException ex) {
-            java.util.logging.Logger.getLogger(thisinhDTO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+           Logger.getLogger(thisinhDTO.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }
@@ -551,7 +545,6 @@ public class thisinhGUI extends javax.swing.JPanel {
                 vt.add(kh.getCmnd());
                 vt.add(kh.getEmail());
                 vt.add(kh.getHoten());
-                vt.add(kh.getHoten());
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 vt.add(format.format(kh.getNgaysinh()));
                 vt.add(kh.getNoisinh());
@@ -560,7 +553,7 @@ public class thisinhGUI extends javax.swing.JPanel {
             }
             jt.setModel(table);
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(thisinhDTO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(thisinhDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

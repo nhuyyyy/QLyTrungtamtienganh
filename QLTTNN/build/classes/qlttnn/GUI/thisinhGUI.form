@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -342,12 +342,12 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="7" rowCount="18">
-                        <Column editable="false" title="M&#xe3; thi&#x301; sinh" type="java.lang.Object"/>
-                        <Column editable="false" title="Cmnd" type="java.lang.Object"/>
-                        <Column editable="false" title="Email" type="java.lang.Object"/>
-                        <Column editable="false" title="Ho&#x323; t&#xea;n" type="java.lang.Object"/>
-                        <Column editable="false" title="Nga&#x300;y sinh" type="java.lang.Object"/>
-                        <Column editable="false" title="N&#x1a1;i sinh" type="java.lang.Object"/>
+                        <Column editable="true" title="M&#xe3; thi&#x301; sinh" type="java.lang.Object"/>
+                        <Column editable="true" title="Cmnd" type="java.lang.Object"/>
+                        <Column editable="true" title="Email" type="java.lang.Object"/>
+                        <Column editable="true" title="Ho&#x323; t&#xea;n" type="java.lang.Object"/>
+                        <Column editable="true" title="Nga&#x300;y sinh" type="java.lang.Object"/>
+                        <Column editable="true" title="N&#x1a1;i sinh" type="java.lang.Object"/>
                         <Column editable="true" title="Sdt" type="java.lang.Object"/>
                       </Table>
                     </Property>

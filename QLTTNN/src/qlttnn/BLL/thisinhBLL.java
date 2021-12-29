@@ -62,7 +62,7 @@ public class thisinhBLL {
         }
         return null;
     }
-      public String remindThisinhID() {// tự sinh mã
+      public String remindMathisinh() {
         int max = 0;
         String s ="";
         for(thisinhDTO kh : ds) {
@@ -75,7 +75,7 @@ public class thisinhBLL {
             s+="0";
         }
         return s+(max+1);
-    }
+   }
             public List<thisinhDTO> getthisinhsearch(Map<String,String> nv) throws Exception{
              thisinhDLL dao = new thisinhDLL();
               List<thisinhDTO> dsnv = dao.getThisinh(nv);
