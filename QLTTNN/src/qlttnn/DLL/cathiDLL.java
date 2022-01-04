@@ -16,7 +16,7 @@ public class cathiDLL {
         ArrayList<cathiDTO> ds = new ArrayList<cathiDTO>();
         MyDataAccess my = new MyDataAccess("localhost", "root", "", "ngoaingu");
         try {
-            String qry = "select * from ca_thi";
+            String qry = "select * from cathi";
             ResultSet rs = my.executeQuery(qry);
             while (rs.next()) {
                 cathiDTO cathi = new cathiDTO();
@@ -38,7 +38,7 @@ public class cathiDLL {
                     try {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
                         MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
-			String qry = "Insert into ca_thi Value(";
+			String qry = "Insert into cathi Value(";
 			qry += "'" + cathi.getCathiID() + "'";
                         qry += ",'" + cathi.getGiothi() + "'";
 			qry += ")";
@@ -53,7 +53,7 @@ public class cathiDLL {
       public int xoa(int cathi_id) {
             int res = 0;
 		try {
-			String qry = "delete from ca_thi where ca_thi_id='" +cathi_id + "'";
+			String qry = "delete from cathi where ca_thi_id='" +cathi_id + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}

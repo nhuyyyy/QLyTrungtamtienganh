@@ -15,7 +15,7 @@ public class NavigationBUS {
         this.root = jpnRoot;
     }
     public void setView (JPanel jpnItem, JLabel jlbItem) {
-        kindSelected = "Tour";
+        kindSelected = "thisinh";
        
         root.removeAll();
         root.setLayout(new BorderLayout());
@@ -49,20 +49,20 @@ public class NavigationBUS {
                 case "thisinh":
                     node = new thisinhGUI();
                     break;
-//                case "Giá":
-//                    node = new GiaPanel();
-//                   
-//                    break;
-//                case "Đoàn" :
-//                    node = new DoanJPanel();
-//                     
-//                    break;
-//                case "Chi Phí":
-//                    node =new ChiPhiJPanel();
-//                    break;
-//                case "Khách hàng" :
-//                    node = new KhachHangJPanel();
-//                    break;
+                case "Đăng ký dự thi":
+                    node = new DangkyduthiGUI();
+                   
+                    break;
+                case "Khóa thi" :
+                    node = new khoathiGUI();
+                     
+                    break;
+                case "Ca thi":
+                    node =new cathiGUI();
+                    break;
+                case "Phòng thi" :
+                    node = new phongthiGUI();
+                    break;
 //                  case "Nhân viên" :
 //                    node = new NhanvienJPanel();
 //                    break;

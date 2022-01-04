@@ -17,13 +17,18 @@ public class dachsachphongthiDLL {
         ArrayList<danhsachphongthiDTO> ds = new ArrayList<danhsachphongthiDTO>();
         MyDataAccess my = new MyDataAccess("localhost", "root", "", "ngoaingu");
         try {
-            String qry = "select * from danh_sach_phong_thi";
+            String qry = "select * from danhsachphongthi";
             ResultSet rs = my.executeQuery(qry);
             while (rs.next()) {
                 danhsachphongthiDTO dspt = new danhsachphongthiDTO();
                 dspt.setTsID(rs.getInt(1));
                 dspt.setPhongthiID(rs.getInt(2));
-
+                dspt.setSbd(rs.getString(3));
+                dspt.setNghe(rs.getFloat(4));
+                dspt.setNoi(rs.getFloat(5));
+                dspt.setDoc(rs.getFloat(6));
+                dspt.setViet(rs.getFloat(7));
+                dspt.setStt(rs.getInt(8));
                 ds.add(dspt);
             }
         } catch (Exception e) {
@@ -39,9 +44,15 @@ public class dachsachphongthiDLL {
                     try {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
                         MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
-			String qry = "Insert into danh_sach_phong_thi Value(";
+			String qry = "Insert into danhsachphongthi Value(";
 			qry += "'" + dspt.getTsID() + "'";
                         qry += ",'" + dspt.getPhongthiID() + "'";
+                          qry += ",'" + dspt.getSbd() + "'";
+                            qry += ",'" + dspt.getNghe() + "'";
+                              qry += ",'" + dspt.getNoi() + "'";
+                                qry += ",'" + dspt.getDoc() + "'";
+                                  qry += ",'" + dspt.getViet() + "'";
+                                  qry += ",'" + dspt.getStt() + "'";
 			qry += ")";
 			res = my.executeUpdate(qry);
                         }
@@ -54,7 +65,7 @@ public class dachsachphongthiDLL {
       public int xoa(int ts_id) {
             int res = 0;
 		try {
-			String qry = "delete from danh_sach_phong_thi where ts_id='" + ts_id + "'";
+			String qry = "delete from danhsachphongthi where thi_sinh_id='" + ts_id + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}
@@ -68,9 +79,15 @@ public class dachsachphongthiDLL {
                 int res = 0;
 		try {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String qry = "Update danh_sach_phong_thi set ";
+			String qry = "Update danhsachphongthi set ";
 			qry += "phong_thi_id ='"+  dspt.getPhongthiID()+ "'";
-			qry += " where ts_id='" + dspt.getTsID() + "'";
+                        qry += "so_bao_danh ='"+  dspt.getSbd()+ "'";
+                        qry += "nghe ='"+  dspt.getNghe()+ "'";
+                        qry += "noi ='"+  dspt.getNoi()+ "'";
+                        qry += "doc ='"+  dspt.getDoc()+ "'";
+                        qry += "viet ='"+  dspt.getViet()+ "'";
+                         qry += "stt ='"+  dspt.getStt()+ "'";
+			qry += " where thi_sinh_id='" + dspt.getTsID() + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}

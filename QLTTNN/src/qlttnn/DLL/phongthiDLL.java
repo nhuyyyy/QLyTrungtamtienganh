@@ -18,14 +18,16 @@ public class phongthiDLL {
         ArrayList<phongthiDTO> ds = new ArrayList<phongthiDTO>();
         MyDataAccess my = new MyDataAccess("localhost", "root", "", "ngoaingu");
         try {
-            String qry = "select * from phong_thi";
+            String qry = "select * from phongthi";
             ResultSet rs = my.executeQuery(qry);
             while (rs.next()) {
                phongthiDTO phongthi = new phongthiDTO();
                 phongthi.setPhongthiID(rs.getInt(1));
                 phongthi.setTenphongthi(rs.getString(2));
                 phongthi.setCathiID(rs.getInt(3));
-
+                phongthi.setKhoathiID(rs.getInt(4));
+                phongthi.setTrinhdo(rs.getString(5));
+                phongthi.setSoluong(rs.getInt(6));
                 ds.add(phongthi);
             }
         } catch (Exception e) {
@@ -41,10 +43,13 @@ public class phongthiDLL {
                     try {
                         
                         MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
-			String qry = "Insert into phong_thi Value(";
+			String qry = "Insert into phongthi Value(";
 			qry += "'" + phongthi.getPhongthiID() + "'";
                         qry += ",'" + phongthi.getTenphongthi() + "'";
                         qry += ",'" + phongthi.getCathiID() + "'";
+                        qry += ",'" + phongthi.getKhoathiID() + "'";
+                        qry += ",'" + phongthi.getTrinhdo() + "'";
+                        qry += ",'" + phongthi.getSoluong() + "'";
 			qry += ")";
 			res = my.executeUpdate(qry);
                         }
@@ -57,7 +62,7 @@ public class phongthiDLL {
       public int xoa(int phongthi_id) {
             int res = 0;
 		try {
-			String qry = "delete from phong_thi where phong_thi_id='" +phongthi_id + "'";
+			String qry = "delete from phongthi where phong_thi_id='" +phongthi_id + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}
@@ -71,9 +76,11 @@ public class phongthiDLL {
                 int res = 0;
 		try {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String qry = "Update phong_thi set ";
+			String qry = "Update phongthi set ";
 			qry += "ten_phong_thi ='"+ phongthi.getTenphongthi() + "'";
                         qry += ",ca_thi_id'"+ phongthi.getCathiID() + "'";
+                         qry += ",trinh_do'"+ phongthi.getTrinhdo() + "'";
+                         qry += ",so_luong'"+ phongthi.getSoluong() + "'";
 			qry += " where phong_thi_id='" + phongthi.getPhongthiID() + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);

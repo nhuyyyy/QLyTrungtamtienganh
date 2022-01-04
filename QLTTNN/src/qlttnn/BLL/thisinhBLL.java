@@ -4,6 +4,7 @@
  */
 package qlttnn.BLL;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import qlttnn.DLL.thisinhDLL;
@@ -17,6 +18,11 @@ public class thisinhBLL {
            ds = data.docdulieu();
        }
    }
+       public void listSP() throws Exception {
+        thisinhDLL data = new thisinhDLL();
+        ds = new ArrayList<>();
+        ds = data.docdulieu();
+    }
       public void docduLieusearch(Map<String,String> nv) throws Exception{
       thisinhDLL dao = new thisinhDLL();
        

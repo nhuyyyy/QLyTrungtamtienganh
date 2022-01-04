@@ -93,7 +93,7 @@ public class MyDataAccess {
     
     public static void main(String[] args) throws Exception {
         MyDataAccess data = new MyDataAccess("localhost", "root", "", "ngoaingu");
-        ResultSet rs = data.executeQuery("select * from thi_sinh");
+        ResultSet rs = data.executeQuery("select * from thisinh");
         while(rs.next())
         {
             System.out.println(rs.getString(1));

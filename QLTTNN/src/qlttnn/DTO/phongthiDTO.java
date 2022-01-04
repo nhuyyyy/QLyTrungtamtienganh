@@ -5,8 +5,20 @@
 package qlttnn.DTO;
 
 public class phongthiDTO {
-    private int phongthiID,cathiID;
-    private String tenphongthi;
+    private int phongthiID,cathiID,khoathiID,soluong;
+    private String tenphongthi,trinhdo;
+
+    public phongthiDTO() {
+    }
+
+    public phongthiDTO(int phongthiID, int cathiID, int khoathiID, int soluong, String tenphongthi, String trinhdo) {
+        this.phongthiID = phongthiID;
+        this.cathiID = cathiID;
+        this.khoathiID = khoathiID;
+        this.soluong = soluong;
+        this.tenphongthi = tenphongthi;
+        this.trinhdo = trinhdo;
+    }
 
     public int getPhongthiID() {
         return phongthiID;
@@ -24,6 +36,22 @@ public class phongthiDTO {
         this.cathiID = cathiID;
     }
 
+    public int getKhoathiID() {
+        return khoathiID;
+    }
+
+    public void setKhoathiID(int khoathiID) {
+        this.khoathiID = khoathiID;
+    }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+    }
+
     public String getTenphongthi() {
         return tenphongthi;
     }
@@ -32,13 +60,12 @@ public class phongthiDTO {
         this.tenphongthi = tenphongthi;
     }
 
-    public phongthiDTO(int phongthiID, int cathiID, String tenphongthi) {
-        this.phongthiID = phongthiID;
-        this.cathiID = cathiID;
-        this.tenphongthi = tenphongthi;
+    public String getTrinhdo() {
+        return trinhdo;
     }
 
-    public phongthiDTO() {
+    public void setTrinhdo(String trinhdo) {
+        this.trinhdo = trinhdo;
     }
 
 }

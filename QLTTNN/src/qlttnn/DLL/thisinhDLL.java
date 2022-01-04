@@ -18,7 +18,7 @@ public class thisinhDLL {
         ArrayList<thisinhDTO> ds = new ArrayList<thisinhDTO>();
         MyDataAccess my =new MyDataAccess("localhost","root","","ngoaingu");
         try{
-            String qry = "select * from thi_sinh";
+            String qry = "select * from thisinh";
 			ResultSet rs = my.executeQuery(qry);
 			while(rs.next()){
                             thisinhDTO thisinh = new thisinhDTO();
@@ -45,7 +45,7 @@ public class thisinhDLL {
                     try {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
                         MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
-			String qry = "Insert into thi_sinh Value(";
+			String qry = "Insert into thisinh Value(";
 			qry += "'" + thisinh.getTsID() + "'";
 			qry += ",'" + thisinh.getCmnd() + "'";
                         qry += ",'" + thisinh.getEmail() + "'";
@@ -65,7 +65,7 @@ public class thisinhDLL {
      public int xoa(int ts_id) {
             int res = 0;
 		try {
-			String qry = "delete from thi_sinh where ts_id='" +ts_id + "'";
+			String qry = "delete from thisinh where thi_sinh_id='" +ts_id + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}
@@ -79,14 +79,14 @@ public class thisinhDLL {
                 int res = 0;
 		try {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String qry = "Update thi_sinh set ";
+			String qry = "Update thisinh set ";
 			qry += "cmnd='"+ thisinh.getCmnd() + "'";
                         qry += ",email='"+ thisinh.getEmail() + "'";
                         qry += ",ho_ten='"+ thisinh.getHoten() + "'";
                         qry += ",ngay_sinh='"+ dateFormat.format(thisinh.getNgaysinh())+ "'";
                         qry += ",noi_sinh='"+ thisinh.getNoisinh() + "'";
                         qry += ",sdt='"+ thisinh.getSdt() + "'";
-			qry += " where ts_id='" + thisinh.getTsID() + "'";
+			qry += " where thi_sinh_id='" + thisinh.getTsID() + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);
 		}
@@ -101,9 +101,9 @@ public class thisinhDLL {
         ArrayList<thisinhDTO> ds = new ArrayList<thisinhDTO>();
         MyDataAccess my =new MyDataAccess("localhost","root","","ngoaingu");
         try{
-            StringBuffer query = new StringBuffer("Select * from thi_sinh where 1=1");
+            StringBuffer query = new StringBuffer("Select * from thisinh where 1=1");
                         if(nv.get("thisinhID")!= null && !nv.get("thisinhID").equals("")){
-                            query.append(" and ts_id = "+nv.get("MthisinhID"));
+                            query.append(" and thi_sinh_id = "+nv.get("thisinhID"));
                         }
                         if(nv.get("hotenthisinh")!= null&& !nv.get("hotenthisinh").equals("")){
                             query.append(" and ho_ten = '"+nv.get("hotenthisinh")+"'");

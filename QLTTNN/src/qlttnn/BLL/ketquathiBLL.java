@@ -4,6 +4,7 @@
  */
 package qlttnn.BLL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import qlttnn.DLL.ketquathiDLL;
@@ -12,13 +13,14 @@ import qlttnn.DTO.ketquathiDTO;
 public class ketquathiBLL {
 public static List<ketquathiDTO> ds;
 
-    public void docDuLieu() throws Exception {
+    public void docDuLieu() throws Exception  {
       ketquathiDLL dao= new ketquathiDLL();
-        if (ds == null) {
-            ds = dao.docdulieu();
-        }
+       ds = new ArrayList<>();
+       ds = dao.docdulieu();
     }
-
+public List<ketquathiDTO> getList(){
+    return  ds;
+}
     public int them(ketquathiDTO dd) {
         ketquathiDLL dao= new ketquathiDLL();
         int rs = dao.them(dd);
@@ -46,13 +48,15 @@ public static List<ketquathiDTO> ds;
         return rs;
     }
 
-    public qlttnn.DTO.ketquathiDTO getDSPT (int ts_id) {
-        for (ketquathiDTO nv : ds) {
-            if (nv.getKqthiID() == ts_id) {
-                return nv;
+   public List<ketquathiDTO> getListKQ(int maTs) {
+        ArrayList<ketquathiDTO> dskq = new ArrayList<>();
+        for(ketquathiDTO ct : ds) {
+            if( ct.getTsIS() == maTs) {
+            } else {
+                dskq.add(ct);
             }
         }
-        return null;
+        return dskq; 
     }
     
     public String remindKQID() {// tự sinh mã

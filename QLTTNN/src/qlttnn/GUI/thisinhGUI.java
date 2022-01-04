@@ -15,6 +15,7 @@ import java.util.Vector;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import qlttnn.BLL.ketquathiBLL;
 import qlttnn.BLL.thisinhBLL;
 import qlttnn.DTO.thisinhDTO;
 
@@ -26,13 +27,15 @@ public class thisinhGUI extends javax.swing.JPanel {
 
     DefaultTableModel table;
 
+ 
+
     /**
      * Creates new form thisinhGUI
      */
     public thisinhGUI() {
         initComponents();
         doDuLieuLenBang();
-       txtMaThiSinh.setEnabled(false);
+       txtMaThiSinh.setEditable(false);
     }
 
     /**
@@ -55,15 +58,15 @@ public class thisinhGUI extends javax.swing.JPanel {
         jdcDOB = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         txtCMND = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtSortTNV = new javax.swing.JTextField();
+        txtSortTTS = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtSortNV = new javax.swing.JTextField();
+        txtSortTS = new javax.swing.JTextField();
         Searchbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt = new javax.swing.JTable();
@@ -97,50 +100,55 @@ public class thisinhGUI extends javax.swing.JPanel {
 
         jLabel5.setText("CMND");
 
-        jButton1.setText("Tạo mới");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnThem.setText("Tạo mới");
+        btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnThemMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Chỉnh sửa");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSua.setText("Chỉnh sửa");
+        btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnSuaMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSuaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Xóa");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnXoa.setText("Xóa");
+        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnXoaMouseClicked(evt);
             }
         });
 
-        jButton4.setText("Quay lại");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setText("Xem điểm");
+        btnView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnViewMousePressed(evt);
+            }
+        });
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("------Tìm kiếm thông tin-----");
 
-        txtSortTNV.addActionListener(new java.awt.event.ActionListener() {
+        txtSortTTS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSortTNVActionPerformed(evt);
+                txtSortTTSActionPerformed(evt);
             }
         });
 
@@ -148,9 +156,9 @@ public class thisinhGUI extends javax.swing.JPanel {
 
         jLabel8.setText("Tên thí sinh");
 
-        txtSortNV.addActionListener(new java.awt.event.ActionListener() {
+        txtSortTS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSortNVActionPerformed(evt);
+                txtSortTSActionPerformed(evt);
             }
         });
 
@@ -227,11 +235,11 @@ public class thisinhGUI extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -255,7 +263,7 @@ public class thisinhGUI extends javax.swing.JPanel {
                                 .addComponent(txtNoisinh, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 25, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +274,11 @@ public class thisinhGUI extends javax.swing.JPanel {
                         .addGap(41, 41, 41)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSortNV, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSortTS, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(txtSortTNV, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSortTTS, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Searchbtn)))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -303,18 +311,18 @@ public class thisinhGUI extends javax.swing.JPanel {
                     .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(btnThem)
+                    .addComponent(btnSua)
+                    .addComponent(btnXoa)
+                    .addComponent(btnView))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSortNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSortTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSortTNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSortTTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Searchbtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,49 +375,68 @@ public class thisinhGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaThiSinhActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+       {                                      
         try {
             // TODO add your handling code here:
             thisinhBLL bus = new thisinhBLL();
-           txtMaThiSinh.setText(bus.remindMathisinh());
-       
-            qlttnn.DTO.thisinhDTO thisinh = new qlttnn.DTO.thisinhDTO();
-            thisinh.setTsID(Integer.parseInt(txtMaThiSinh.getText()));
-            
-            thisinh.setCmnd(txtCMND.getText());
-            thisinh.setEmail(txtEmail.getText());
-            thisinh.setHoten(txtTenThiSinh.getText());
-            thisinh.setNgaysinh(jdcDOB.getDate());
-            thisinh.setNoisinh(txtNoisinh.getText());
-            thisinh.setSdt(txtSdt.getText());
-            Vector head = new Vector();
-            head.add(thisinh.getTsID());
-            head.add(thisinh.getCmnd());
-            head.add(thisinh.getEmail());
-            head.add(thisinh.getHoten());
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            head.add(format.format(thisinh.getNgaysinh()));
-            head.add(thisinh.getNoisinh());
-            head.add(thisinh.getSdt());
-            int rs = bus.them(thisinh);
-            if (rs == 1) {
-                table.addRow(head);
-                jt.setModel(table);
-                JOptionPane.showMessageDialog(null, "Thêm thành công");
-            } else {
-                JOptionPane.showMessageDialog(null, "Mã đã tồn tại. Thêm thất bại");
+            txtMaThiSinh.setText(bus.remindMathisinh());
+            bus.docDuLieu();
+            thisinhDTO thisinh = new thisinhDTO();
+            if(txtCMND.getText().equals("Nhập cmnd")||txtEmail.getText().equals("Nhập email")||txtTenThiSinh.getText().equals("Nhập tên thí sinh")||txtNoisinh.getText().equals("Nhập nơi sinh")||txtSdt.getText().equals("Nhập sđt")) 
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin Nhân viên cần thêm mới!","Thông báo",0);
+            else{
+                thisinh.setTsID(Integer.parseInt(txtMaThiSinh.getText()));
+              String pattern="\\d{12}$";
+                String pattern0="\\d{10}$";
+                if(txtCMND.getText().matches(pattern )==false && txtCMND.getText().matches(pattern0 )==false) JOptionPane.showMessageDialog(null, "CMND bắc buộc phải 10 số hoặc 12 số","Thông báo",0);
+                else{
+                    thisinh.setCmnd(txtCMND.getText());
+                    String pattern1="^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
+                    if(txtEmail.getText().matches(pattern1 )==false) JOptionPane.showMessageDialog(null, "Email không hợp lệ","Thông báo",0);
+                    else{
+                        thisinh.setEmail(txtEmail.getText());
+                        thisinh.setHoten(txtTenThiSinh.getText());
+                        thisinh.setNgaysinh( jdcDOB.getDate());
+                        thisinh.setNoisinh(txtNoisinh.getText());
+                        String pattern2="^0\\d{9,10}$";
+                        if(txtSdt.getText().matches(pattern2 )==false) JOptionPane.showMessageDialog(null, "SĐT phải bắt đầu bằng số 0, không được chứa các kí tự khác số và phải có từ 10 đến 11 chữ số!","Thông báo",0);
+                        else{
+                            thisinh.setSdt(txtSdt.getText());
+                            Vector head = new Vector();
+                            head.add(thisinh.getTsID());
+                            head.add(thisinh.getCmnd());
+                            head.add(thisinh.getEmail());
+                            head.add(thisinh.getHoten());
+                            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                            head.add(format.format(thisinh.getNgaysinh()));
+                            head.add(thisinh.getNoisinh());
+                            head.add(thisinh.getSdt());
+                            int rs = bus.them(thisinh);
+                            if (rs == 1) {
+                                table.addRow(head);
+                                jt.setModel(table);
+                                JOptionPane.showMessageDialog(null, "Thêm thành công");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Mã đã tồn tại. Thêm thất bại");
+                            }
+                            cleanView();
+                        }
+                    }
+                }
             }
-            cleanView();
+            
         } catch (Exception ex) {
-             Logger.getLogger(thisinhDTO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
+            java.util.logging.Logger.getLogger(thisinhDTO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }}
+    
+    }//GEN-LAST:event_btnThemMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnThemActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
         // TODO add your handling code here:
         thisinhBLL bll = new thisinhBLL();
         int i = jt.getSelectedRow();
@@ -443,13 +470,13 @@ public class thisinhGUI extends javax.swing.JPanel {
                 cleanView();
             }
         }
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btnSuaMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
         // TODO add your handling code here:
         int i = jt.getSelectedRow();
         if (i >= 0) {
@@ -466,32 +493,39 @@ public class thisinhGUI extends javax.swing.JPanel {
                 cleanView();
             }
         }
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnXoaMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void txtSortTTSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSortTTSActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_txtSortTTSActionPerformed
 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void txtSortTNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSortTNVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSortTNVActionPerformed
-
-    private void txtSortNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSortNVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSortNVActionPerformed
+    private void txtSortTSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSortTSActionPerformed
+        
+    }//GEN-LAST:event_txtSortTSActionPerformed
 
     private void SearchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchbtnActionPerformed
-
+  Map<String,String> map = new HashMap<>();
+       map.put("thisinhID",txtSortTS.getText());
+       map.put("hotenthisinh", txtSortTTS.getText());
+        doDuLieuSearch(map);
     }//GEN-LAST:event_SearchbtnActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        chitietketquathiSuggest ct = new chitietketquathiSuggest(txtMaThiSinh.getText());
+        ct.setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnViewMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMousePressed
+
+    }//GEN-LAST:event_btnViewMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Searchbtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -513,8 +547,8 @@ public class thisinhGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaThiSinh;
     private javax.swing.JTextField txtNoisinh;
     private javax.swing.JTextField txtSdt;
-    private javax.swing.JTextField txtSortNV;
-    private javax.swing.JTextField txtSortTNV;
+    private javax.swing.JTextField txtSortTS;
+    private javax.swing.JTextField txtSortTTS;
     private javax.swing.JTextField txtTenThiSinh;
     // End of variables declaration//GEN-END:variables
     private void setTextFields(String toString, String toString0, String toString1, String toString2, String toString3, String toString4, String toString5) {
@@ -557,7 +591,32 @@ public class thisinhGUI extends javax.swing.JPanel {
         }
 
     }
-
+public void doDuLieuSearch(Map<String,String> map)
+    {
+         thisinhBLL bus = new thisinhBLL();
+        try {
+            bus.docduLieusearch(map);
+             table = (DefaultTableModel) jt.getModel();
+            //////////////arraylists
+            table.setRowCount(0);
+            for (qlttnn.DTO.thisinhDTO kh : bus.ds) {
+                Vector vt = new Vector();
+                vt.add(kh.getTsID());
+                vt.add(kh.getCmnd());
+                vt.add(kh.getEmail());
+                vt.add(kh.getHoten());
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                vt.add(format.format(kh.getNgaysinh()));
+                vt.add(kh.getNoisinh());
+                vt.add(kh.getSdt());
+                table.addRow(vt);
+            }
+            jt.setModel(table);
+        } catch (Exception ex) {
+            Logger.getLogger(thisinhDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
     public void cleanView() //Xóa trắng các TextField
     {
         txtMaThiSinh.setText("");

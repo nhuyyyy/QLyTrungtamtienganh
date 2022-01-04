@@ -68,8 +68,8 @@ public class khoathiDLL {
 		try {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String qry = "Update phong_thi set ";
-			qry += "ngay_thi='"+ dateFormat.format(khoathi.getNgaythi())+ "'";
-                        qry += ",ten_khoa_thi='"+ khoathi.getTenkhoathi() + "'";
+			qry += "ngay_bat_dau='"+ dateFormat.format(khoathi.getNgaythi())+ "'";
+                        qry += ",ten_khoa='"+ khoathi.getTenkhoathi() + "'";
 			qry += " where khoa_thi_id='" + khoathi.getKhoathiID() + "'";
 			MyDataAccess my = new MyDataAccess("localhost","root","","ngoaingu");
                         res = my.executeUpdate(qry);

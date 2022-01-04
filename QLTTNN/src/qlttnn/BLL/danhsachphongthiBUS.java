@@ -4,6 +4,7 @@
  */
 package qlttnn.BLL;
 
+import java.util.ArrayList;
 import java.util.List;
 import qlttnn.DLL.dachsachphongthiDLL;
 import qlttnn.DTO.danhsachphongthiDTO;
@@ -17,7 +18,20 @@ public class danhsachphongthiBUS {
             ds = dao.docdulieu();
         }
     }
+public List<danhsachphongthiDTO> getList(){
+    return  ds;
+}
 
+   public List<danhsachphongthiDTO> getListKQ(int maphongthi) {
+        ArrayList<danhsachphongthiDTO> dskq = new ArrayList<>();
+        for(danhsachphongthiDTO ct : ds) {
+            if( ct.getPhongthiID() == maphongthi) {
+            } else {
+                dskq.add(ct);
+            }
+        }
+        return dskq; 
+    }
     public int them(danhsachphongthiDTO dd) {
         dachsachphongthiDLL dao= new dachsachphongthiDLL();
         int rs = dao.them(dd);
@@ -54,6 +68,19 @@ public class danhsachphongthiBUS {
         return null;
     }
 
-    
+     public String remindSTT() {// tự sinh mã
+        int max = 0;
+        String s = "";
+        for (danhsachphongthiDTO kh : ds) {
+            int id = (kh.getStt());
+            if (id > max) {
+                max = id;
+            }
+        }
+        for (int i = 0; i < 3 - String.valueOf(max + 1).length(); i++) {
+            s += "0";
+        }
+        return s + (max + 1);
+    }
 
 }

@@ -27,14 +27,7 @@ public class sobaodanhBLL {
         return rs;
     }
 
-    public int xoa(String vitri) {
-       sobaodanhDLL dao = new sobaodanhDLL();
-        int rs = dao.xoa(ds.get(vitri).getSbdID());
-        if (rs == 1) {
-            ds.remove(vitri);
-        }
-        return rs;
-    }
+
 
     public int sua(int vitri, sobaodanhDTO dd) {
              sobaodanhDLL dao = new sobaodanhDLL();
