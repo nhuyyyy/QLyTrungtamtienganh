@@ -54,7 +54,7 @@ DefaultTableModel table;
         txtcathi = new javax.swing.JTextField();
         btnsugestcathi = new javax.swing.JButton();
         btnsuggestkhoathi = new javax.swing.JButton();
-        CBtrinhdo = new javax.swing.JComboBox<>();
+        trinhdotxt = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         soluongtxt = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -148,7 +148,12 @@ DefaultTableModel table;
             }
         });
 
-        CBtrinhdo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A2", "B1" }));
+        trinhdotxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A2", "B1" }));
+        trinhdotxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trinhdotxtActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Trình độ");
 
@@ -208,7 +213,7 @@ DefaultTableModel table;
                                 .addGap(29, 29, 29)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CBtrinhdo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(trinhdotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,7 +248,7 @@ DefaultTableModel table;
                     .addComponent(txtkhoathi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btnsuggestkhoathi)
-                    .addComponent(CBtrinhdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trinhdotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(soluongtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -301,10 +306,10 @@ DefaultTableModel table;
         txtMaphong.setText(bus.remindThisinhID());
         qlttnn.DTO.phongthiDTO gt = new qlttnn.DTO.phongthiDTO();
         gt.setPhongthiID(Integer.parseInt(txtMaphong.getText()));
-        gt.setTenphongthi(CBtrinhdo.getSelectedItem().toString()+"P"+ txtMaphong.getText());
+        gt.setTenphongthi(trinhdotxt.getSelectedItem().toString()+"P"+ txtMaphong.getText());
         gt.setCathiID(Integer.parseInt(txtcathi.getText()));
         gt.setKhoathiID(Integer.parseInt(txtkhoathi.getText()));
-        gt.setTrinhdo(CBtrinhdo.getSelectedItem().toString());
+        gt.setTrinhdo(trinhdotxt.getSelectedItem().toString());
         gt.setSoluong(Integer.parseInt(soluongtxt.getSelectedItem().toString()));
 
         Vector head = new Vector();
@@ -339,7 +344,9 @@ DefaultTableModel table;
         int i = jt.getSelectedRow();
         if (i >= 0)
 
-        setTextFields(jt.getValueAt(i, 0).toString(), jt.getValueAt(i, 1).toString(), jt.getValueAt(i, 2).toString(), jt.getValueAt(i, 2).toString(), jt.getValueAt(i, 3).toString(), jt.getValueAt(i, 5).toString());
+        setTextFields(jt.getValueAt(i, 0).toString(), jt.getValueAt(i, 1).toString(), 
+                jt.getValueAt(i, 2).toString(), jt.getValueAt(i, 3).toString(), 
+                jt.getValueAt(i, 4).toString(), jt.getValueAt(i, 5).toString());
 
     }//GEN-LAST:event_jtMouseClicked
 
@@ -367,7 +374,7 @@ DefaultTableModel table;
     }//GEN-LAST:event_btndsActionPerformed
 
     private void btnthemdsptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemdsptActionPerformed
-       danhsachthisinhSuggest dspt = new danhsachthisinhSuggest(txtMaphong.getText(),CBtrinhdo.getSelectedItem().toString());
+       danhsachthisinhSuggest dspt = new danhsachthisinhSuggest(txtMaphong.getText(),trinhdotxt.getSelectedItem().toString());
        dspt.setVisible(true);
     }//GEN-LAST:event_btnthemdsptActionPerformed
 
@@ -375,9 +382,12 @@ DefaultTableModel table;
         // TODO add your handling code here:
     }//GEN-LAST:event_txttenphongActionPerformed
 
+    private void trinhdotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trinhdotxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trinhdotxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CBtrinhdo;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnds;
     private javax.swing.JButton btnsugestcathi;
@@ -395,6 +405,7 @@ DefaultTableModel table;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt;
     private javax.swing.JComboBox<String> soluongtxt;
+    private javax.swing.JComboBox<String> trinhdotxt;
     private javax.swing.JTextField txtMaphong;
     private javax.swing.JTextField txtcathi;
     private javax.swing.JTextField txtkhoathi;
@@ -405,7 +416,7 @@ private void setTextFields(String toString, String toString0,String toString1,St
        txttenphong.setText(toString0);
         txtcathi.setText(toString1);
       txtkhoathi.setText(toString2);
-      CBtrinhdo.setSelectedItem(toString3);
+      trinhdotxt.setSelectedItem(toString3);
       soluongtxt.setSelectedItem(toString4);
       
         

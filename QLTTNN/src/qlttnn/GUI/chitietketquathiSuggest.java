@@ -5,7 +5,9 @@
 package qlttnn.GUI;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import qlttnn.BLL.ketquathiBLL;
@@ -29,7 +31,7 @@ public class chitietketquathiSuggest extends javax.swing.JDialog {
         this.maphthi = maphthi;
          
           initComponents();
-         list();
+  data();
     }
 
    
@@ -368,16 +370,15 @@ public class chitietketquathiSuggest extends javax.swing.JDialog {
     }
 
    
-    public void list(){
-   try {
-       if(bus.getList() == null)
-           bus.docDuLieu();
-       
-      
-       int a = Integer.parseInt(maphthi);
-       List<danhsachphongthiDTO> kq = bus.getListKQ(a);
-       table = (DefaultTableModel) jt.getModel();
-       table.setRowCount(0);
+      public void doDuLieuSearch(Map<String,String> map)
+    {
+         danhsachphongthiBUS bus = new danhsachphongthiBUS();
+        try {
+            bus.docduLieumaphong(map);
+             table = (DefaultTableModel) jt.getModel();
+            //////////////arraylists
+            table.setRowCount(0);
+                  table.setRowCount(0);
        for (qlttnn.DTO.danhsachphongthiDTO kh : bus.ds) {
            Vector vt = new Vector();
            vt.add(kh.getTsID());
@@ -387,17 +388,20 @@ public class chitietketquathiSuggest extends javax.swing.JDialog {
            vt.add(kh.getNoi());
            vt.add(kh.getDoc());
            vt.add(kh.getViet());
+           vt.add(kh.getStt());
            table.addRow(vt);
        }
-       jt.setModel(table);
+        jt.setModel(table);
        
+        } catch (Exception ex) {
+            Logger.getLogger(danhsachphongthiDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
-   } catch (Exception ex) {
-         Logger.getLogger(chitietketquathiSuggest.class.getName()).log(Level.SEVERE, null, ex);
-  // Handle the condition when str is not a number.
-}
-        
-        
+    }
+    public void data(){
+        Map<String,String> map = new HashMap<>();
+       map.put("maphongthi",maphthi.toString());
+        doDuLieuSearch(map);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

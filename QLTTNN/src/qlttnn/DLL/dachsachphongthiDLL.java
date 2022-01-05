@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import qlttnn.DTO.danhsachphongthiDTO;
 import qlttnn.MySQLConnect.MyDataAccess;
@@ -97,4 +98,34 @@ public class dachsachphongthiDLL {
 		}
                 return res;
 	}
+      public ArrayList<danhsachphongthiDTO> docdulieuphongthi(Map<String,String> nv) throws Exception {
+        ArrayList<danhsachphongthiDTO> ds = new ArrayList<danhsachphongthiDTO>();
+        MyDataAccess my = new MyDataAccess("localhost", "root", "", "ngoaingu");
+        try {
+             StringBuffer query = new StringBuffer("Select * from danhsachphongthi where 1=1");
+                       if(nv.get("maphongthi")!= null && !nv.get("maphongthi").equals("")){
+                            query.append(" and phong_thi_id = "+nv.get("maphongthi"));
+                        }
+            System.out.println(query.toString());
+			ResultSet rs = my.executeQuery(query.toString());
+            while (rs.next()) {
+                danhsachphongthiDTO dspt = new danhsachphongthiDTO();
+                dspt.setTsID(rs.getInt(1));
+                dspt.setPhongthiID(rs.getInt(2));
+                dspt.setSbd(rs.getString(3));
+                dspt.setNghe(rs.getFloat(4));
+                dspt.setNoi(rs.getFloat(5));
+                dspt.setDoc(rs.getFloat(6));
+                dspt.setViet(rs.getFloat(7));
+                dspt.setStt(rs.getInt(8));
+                ds.add(dspt);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+            JOptionPane.showMessageDialog(null, "Lỗi đọc Database");
+        } finally {
+            my.close();
+        }
+        return ds;
+    }
 }

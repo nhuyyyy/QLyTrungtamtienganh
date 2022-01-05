@@ -6,28 +6,49 @@ package qlttnn.BLL;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import qlttnn.DLL.dachsachphongthiDLL;
 import qlttnn.DTO.danhsachphongthiDTO;
 
 public class danhsachphongthiBUS {
   public static List<danhsachphongthiDTO> ds;
 
-    public void docDuLieu() throws Exception {
-      dachsachphongthiDLL dao= new dachsachphongthiDLL();
-        if (ds == null) {
-            ds = dao.docdulieu();
-        }
+    public void list() throws Exception {
+     dachsachphongthiDLL loaiDAO = new dachsachphongthiDLL();
+        ds= new ArrayList<>();
+        ds= loaiDAO.docdulieu();
     }
+     public void docDuLieu() throws Exception{
+         dachsachphongthiDLL data = new dachsachphongthiDLL();
+       if(ds == null){
+           ds = data.docdulieu();
+       }
+   }
 public List<danhsachphongthiDTO> getList(){
     return  ds;
 }
-
+      public void docduLieumaphong(Map<String,String> nv) throws Exception{
+       dachsachphongthiDLL data = new dachsachphongthiDLL();
+       
+                ds = data.docdulieuphongthi(nv);
+             
+}
+   public qlttnn.DTO.danhsachphongthiDTO getMaphong(int maphong)
+    {
+        for(danhsachphongthiDTO nv: ds)
+        {
+            if(nv.getPhongthiID() == maphong)
+                   return nv;
+        }
+        return null;
+    }
    public List<danhsachphongthiDTO> getListKQ(int maphongthi) {
         ArrayList<danhsachphongthiDTO> dskq = new ArrayList<>();
         for(danhsachphongthiDTO ct : ds) {
             if( ct.getPhongthiID() == maphongthi) {
-            } else {
+          
                 dskq.add(ct);
+                System.out.println(dskq.get(0));
             }
         }
         return dskq; 
